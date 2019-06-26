@@ -1,147 +1,168 @@
 import React, { Component } from "react";
-import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse,   MDBNavItem, MDBFooter, MDBNavLink } from "mdbreact";
-import { ReactComponent as Logo } from './assets/logo.svg';
-import { BrowserRouter as Router } from "react-router-dom";
+import { Link, BrowserRouter as Router } from "react-router-dom";
+import { MDBInput, MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon, MDBSideNavItem, MDBSideNavCat, MDBSideNavNav, MDBSideNav, MDBContainer } from "mdbreact";
+import "./index.css";
 import Routes from "./Routes";
+import b11Logo from "./assets/b11_logo.png"
 
 class App extends Component {
-
-  state={
-    collapseID: ""
+  constructor(props) {
+    super(props);
+    this.state = {
+      toggleStateA: false
+    };
   }
 
-  toggleCollapse = collapseID => () =>
-    this.setState(prevState => ({
-      collapseID: prevState.collapseID !== collapseID ? collapseID : ""
-    }));
-
-  closeCollapse = collapseID => () =>
-    this.state.collapseID === collapseID && this.setState({ collapseID: "" });
+  handleToggleClickA = () => {
+    this.setState({
+      toggleStateA: !this.state.toggleStateA
+    });
+  };
 
   render() {
+    const mainStyle = {
+      paddingTop: "4rem"
+    };
 
-    const overlay = (
-      <div
-        id="sidenav-overlay"
-        style={{ backgroundColor: "transparent" }}
-        onClick={this.toggleCollapse("mainNavbarCollapse")}
-      />
-    );
-
-    const { collapseID } = this.state;
+    const specialCaseNavbarStyles = {
+      WebkitBoxOrient: "horizontal",
+      flexDirection: "row"
+    };
 
     return (
-      <Router>
-        <div className="flyout">
-          <MDBNavbar color="indigo" dark expand="md" fixed="top" scrolling>
-            <MDBNavbarBrand href="/">
-              <Logo style={{ height: '2.5rem', width: "2.5rem" }} />
-              MDB React
-            </MDBNavbarBrand>
-            <MDBNavbarToggler onClick={this.toggleCollapse("mainNavbarCollapse")} />
-            <MDBCollapse
-              id="mainNavbarCollapse"
-              isOpen={this.state.collapseID}
-              navbar
-            >
-              <MDBNavbarNav right>
-                <MDBNavItem>
-                  <MDBNavLink
-                    exact
-                    to="/"
-                    onClick={this.closeCollapse("mainNavbarCollapse")}
-                  >
-                    Home
-                  </MDBNavLink>
-                </MDBNavItem>
-                <MDBNavItem>
-                  <MDBNavLink
-                    onClick={this.closeCollapse("mainNavbarCollapse")}
-                    to="/css"
-                  >
-                    CSS
-                  </MDBNavLink>
-                </MDBNavItem>
-                <MDBNavItem>
-                  <MDBNavLink
-                    onClick={this.closeCollapse("mainNavbarCollapse")}
-                    to="/components"
-                  >
-                    Components
-                  </MDBNavLink>
-                </MDBNavItem>
-                <MDBNavItem>
-                  <MDBNavLink
-                    onClick={this.closeCollapse("mainNavbarCollapse")}
-                    to="/advanced"
-                  >
-                    Advanced
-                  </MDBNavLink>
-                </MDBNavItem>
-                <MDBNavItem>
-                  <MDBNavLink
-                    onClick={this.closeCollapse("mainNavbarCollapse")}
-                    to="/navigation"
-                  >
-                    Navigation
-                  </MDBNavLink>
-                </MDBNavItem>
-                <MDBNavItem>
-                  <MDBNavLink
-                    onClick={this.closeCollapse("mainNavbarCollapse")}
-                    to="/forms"
-                  >
-                    Forms
-                  </MDBNavLink>
-                </MDBNavItem>
-                <MDBNavItem>
-                  <MDBNavLink
-                    onClick={this.closeCollapse("mainNavbarCollapse")}
-                    to="/tables"
-                  >
-                    Tables
-                  </MDBNavLink>
-                </MDBNavItem>
-                <MDBNavItem>
-                  <MDBNavLink
-                    onClick={this.closeCollapse("mainNavbarCollapse")}
-                    to="/modals"
-                  >
-                    Modals
-                  </MDBNavLink>
-                </MDBNavItem>
-                <MDBNavItem>
-                  <MDBNavLink
-                    onClick={this.closeCollapse("mainNavbarCollapse")}
-                    to="/addons"
-                  >
-                    Addons
-                  </MDBNavLink>
-                </MDBNavItem>
-                {/* PRO-START */}
-                <MDBNavItem>
-                  <MDBNavLink
-                    onClick={this.closeCollapse("mainNavbarCollapse")}
-                    to="/sections"
-                  >
-                    Sections
-                  </MDBNavLink>
-                </MDBNavItem>
-                {/* PRO-END */}
-              </MDBNavbarNav>
-            </MDBCollapse>
+        <div className="grey-skin">
+          <MDBSideNav
+            logo="https://mdbootstrap.com/img/logo/mdb-transparent.png"
+            triggerOpening={this.state.toggleStateA}
+            bg="https://mdbootstrap.com/img/Photos/Others/sidenav4.jpg"
+            mask="strong"
+            hidden
+          >
+            <li>
+              <ul className="social">
+                <li>
+                  <a href="#!">
+                    <MDBIcon fab icon="facebook-f" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#!">
+                    <MDBIcon fab icon="pinterest" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#!">
+                    <MDBIcon fab icon="google-plus-g" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#!">
+                    <MDBIcon fab icon="twitter" />
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <MDBInput
+              type="text"
+              default="Search"
+              style={{
+                color: "#fff",
+                padding: "0 10px 8px 30px",
+                boxSizing: "border-box"
+              }}
+            />
+            <MDBSideNavNav>
+              <MDBSideNavCat
+                name="Submit blog"
+                id="submit-blog-cat"
+                icon="chevron-right"
+              >
+                <MDBSideNavItem>Submit listing</MDBSideNavItem>
+                <MDBSideNavItem>Registration form</MDBSideNavItem>
+              </MDBSideNavCat>
+              <MDBSideNavCat
+                iconRegular
+                name="Instruction"
+                id="instruction-cat"
+                icon="hand-pointer"
+              >
+                <MDBSideNavItem>For bloggers</MDBSideNavItem>
+                <MDBSideNavItem>For authors</MDBSideNavItem>
+              </MDBSideNavCat>
+              <MDBSideNavCat name="About" id="about-cat" icon="eye">
+                <MDBSideNavItem>Instruction</MDBSideNavItem>
+                <MDBSideNavItem>Monthly meetings</MDBSideNavItem>
+              </MDBSideNavCat>
+              <MDBSideNavCat
+                name="Contact me"
+                id="contact-me-cat"
+                icon="envelope"
+              >
+                <MDBSideNavItem>FAQ</MDBSideNavItem>
+                <MDBSideNavItem>Write a message</MDBSideNavItem>
+              </MDBSideNavCat>
+            </MDBSideNavNav>
+          </MDBSideNav>
+          <MDBNavbar double expand="md" className="b11-red-nav">
+            <MDBNavbarNav left>
+              <MDBNavItem>
+                <div
+                  onClick={this.handleToggleClickA}
+                  key="sideNavToggleA"
+                  style={{
+                    lineHeight: "32px",
+                    marginRight: "1em",
+                    verticalAlign: "middle"
+                  }}
+                >
+                  <MDBIcon icon="bars" color="white" size="2x" style={{ marginTop: 5 }} />
+                </div>
+              </MDBNavItem>
+              <MDBNavItem className="d-none d-md-inline" style={{ paddingTop: 0 }}>
+              <MDBNavbarBrand>
+              <img src={b11Logo} height="30" alt="" />
+              </MDBNavbarBrand>
+              </MDBNavItem>
+            </MDBNavbarNav>
+            <MDBNavbarNav right style={specialCaseNavbarStyles}>
+              <MDBNavItem active>
+                <MDBNavLink to="#!">
+                  <MDBIcon icon="envelope" className="d-inline-inline" />{" "}
+                  <div className="d-none d-md-inline">Contact</div>
+                </MDBNavLink>
+              </MDBNavItem>
+              <MDBNavItem>
+                <MDBNavLink to="#!">
+                  <MDBIcon far icon="comments" className="d-inline-inline" />{" "}
+                  <div className="d-none d-md-inline">Support</div>
+                </MDBNavLink>
+              </MDBNavItem>
+              <MDBNavItem>
+                <MDBNavLink to="#!">
+                  <MDBIcon icon="user" className="d-inline-inline" />{" "}
+                  <div className="d-none d-md-inline">Account</div>
+                </MDBNavLink>
+              </MDBNavItem>
+              <MDBNavItem>
+                <MDBDropdown>
+                  <MDBDropdownToggle nav caret>
+                    <div className="d-none d-md-inline">Dropdown</div>
+                  </MDBDropdownToggle>
+                  <MDBDropdownMenu right>
+                    <MDBDropdownItem href="#!">Action</MDBDropdownItem>
+                    <MDBDropdownItem href="#!">Another Action</MDBDropdownItem>
+                    <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
+                    <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
+                  </MDBDropdownMenu>
+                </MDBDropdown>
+              </MDBNavItem>
+            </MDBNavbarNav>
           </MDBNavbar>
-          {collapseID && overlay}
-          <main style={{ marginTop: "4rem" }}>
-            <Routes />
+          <main>
+          <Routes />
           </main>
-          <MDBFooter color="indigo">
-            <p className="footer-copyright mb-0 py-3 text-center">
-              &copy; {new Date().getFullYear()} Copyright: <a href="https://www.MDBootstrap.com"> MDBootstrap.com </a>
-            </p>
-          </MDBFooter>
         </div>
-      </Router>
+     
     );
   }
 }
