@@ -126,35 +126,28 @@ class App extends Component {
             </MDBNavbarNav>
             <MDBNavbarNav right style={specialCaseNavbarStyles}>
               <MDBNavItem active>
-                <MDBNavLink to="#!">
+                <MDBNavLink to="/">
                   <MDBIcon icon="envelope" className="d-inline-inline" />{" "}
-                  <div className="d-none d-md-inline">Contact</div>
+                  <div className="d-none d-md-inline">Home</div>
                 </MDBNavLink>
               </MDBNavItem>
               <MDBNavItem>
-                <MDBNavLink to="#!">
+                <MDBNavLink to="/survey">
                   <MDBIcon far icon="comments" className="d-inline-inline" />{" "}
-                  <div className="d-none d-md-inline">Support</div>
+                  <div className="d-none d-md-inline">Survey</div>
                 </MDBNavLink>
               </MDBNavItem>
               <MDBNavItem>
-                <MDBNavLink to="#!">
+                <MDBNavLink to="/test">
                   <MDBIcon icon="user" className="d-inline-inline" />{" "}
-                  <div className="d-none d-md-inline">Account</div>
+                  <div className="d-none d-md-inline">Database Test</div>
                 </MDBNavLink>
               </MDBNavItem>
               <MDBNavItem>
-                <MDBDropdown>
-                  <MDBDropdownToggle nav caret>
-                    <div className="d-none d-md-inline">Dropdown</div>
-                  </MDBDropdownToggle>
-                  <MDBDropdownMenu right>
-                    <MDBDropdownItem href="#!">Action</MDBDropdownItem>
-                    <MDBDropdownItem href="#!">Another Action</MDBDropdownItem>
-                    <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
-                    <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
-                  </MDBDropdownMenu>
-                </MDBDropdown>
+                <MDBNavLink to="/nextstep">
+                  <MDBIcon icon="user" className="d-inline-inline" />{" "}
+                  <div className="d-none d-md-inline">Next Step</div>
+                </MDBNavLink>
               </MDBNavItem>
             </MDBNavbarNav>
           </MDBNavbar>
