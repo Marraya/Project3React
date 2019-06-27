@@ -138,6 +138,12 @@ class App extends Component {
                 </MDBNavLink>
               </MDBNavItem>
               <MDBNavItem>
+                <MDBNavLink to="/website">
+                  <MDBIcon icon="user" className="d-inline-inline" />{" "}
+                  <div className="d-none d-md-inline">Generated Website</div>
+                </MDBNavLink>
+              </MDBNavItem>
+              <MDBNavItem>
                 <MDBNavLink to="/test">
                   <MDBIcon icon="user" className="d-inline-inline" />{" "}
                   <div className="d-none d-md-inline">Database Test</div>
@@ -151,9 +157,9 @@ class App extends Component {
               </MDBNavItem>
             </MDBNavbarNav>
           </MDBNavbar>
-          <main>
+         
           <Routes />
-          </main>
+          
         </div>
      
     );

@@ -3,6 +3,9 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const axios = require('axios')
+const GSR = require('google-search-results-nodejs')
+let client = new GSR.GoogleSearchResults("13f05fdb9832aae090d311281ecb2de69a29e85dc558ccb3b66706f6b448508e")
 const clientRoutes = express.Router();
 const PORT = 4000;
 
@@ -30,7 +33,7 @@ clientRoutes.route('/').get(function(req, res) {
 
 clientRoutes.route('/:id').get(function(req, res) {
     let id = req.params.id;
-    Clients.findById(id, function(err, clients) {
+    Client.findById(id, function(err, clients) {
         res.json(clients);
     });
 });
@@ -64,6 +67,33 @@ clientRoutes.route('/update/:id').post(function(req, res) {
             });
     });
 });
+
+// SERP SCRAPE
+
+clientRoutes.route('/scrape').post(function(req, res) {
+    
+    let industry = req.body.client_industry;
+
+        console.log(industry)
+    var parameter = {
+        q: industry,
+        tbm: "isch",
+        ijn: 0,
+        tbs: "itp:photos",
+        isz: 1,
+      };
+      
+      var callback = function(data) {
+      console.log(data);
+      res.send(data)
+      }
+      
+      // Show result as JSON
+      client.json(parameter, callback)
+    // res.send('hello world')
+});
+
+
 
 app.use('/client', clientRoutes);
 
