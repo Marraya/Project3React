@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCardGroup, MDBContainer, MDBFormInline, MDBInput, MDBMask, MDBView, MDBBtn } from "mdbreact";
 import redWall from "../assets/red_wall.jpg";
+import axios from 'axios';
 import "./home.css";
 
 
@@ -8,12 +9,11 @@ class Survey extends Component {
   constructor() {
     super();
     this.state = {
-      company: "",
+      business: "",
       website: "",
       industry: ""
     };
   }
-
   
   onClick = nr => () => {
     this.setState({
@@ -32,17 +32,29 @@ class Survey extends Component {
     })
   }
 
-  sendForm = () => {
-    fetch('https://some/url', {
-      method: 'POST',
-      body: JSON.stringify({
-        name: this.state.name,
-        email: this.state.email,
-        message: this.state.message
-      })
+  sendForm = (event) => {
+
+    event.preventDefault();
+
+    console.log(`Form Submitted:`);
+    console.log(`Business Name: ${this.state.business}`);
+    console.log(`Website URL: ${this.state.website}`);
+    console.log(`Industry: ${this.state.industry}`);
+
+    const newClientProfile = {
+      client_business: this.state.business,
+      client_website: this.state.website,
+      client_industry: this.state.industry
+  };
+
+  axios.post('http://localhost:4000/client/add', newClientProfile)
+  .then(res => console.log(res.data));
+
+  this.setState({
+    business: "",
+    website: "",
+    industry: ""
     })
-    .then(res => res.json())
-    .catch(err => console.log(err));
   }
  
 render() {
@@ -59,8 +71,8 @@ return (
         type="text"
         className="form-control"
         id="formGroupExampleInput"
-        name="company"
-        value={this.state.company}
+        name="business"
+        value={this.state.business}
         onInput={this.handleInput}
       />
     </div>
@@ -77,13 +89,13 @@ return (
     </div>
       <p>What industry is your business?</p>
       <MDBFormInline>
-        <MDBInput gap onClick={this.onClick(1)} checked={this.state.industry===1 ? true : false} label="Business" type="radio" id="radio1" />
-        <MDBInput gap onClick={this.onClick(2)} checked={this.state.industry===2 ? true : false} label="E-Commerce" type="radio" id="radio2" />
-        <MDBInput gap onClick={this.onClick(3)} checked={this.state.industry===3 ? true : false} label="Restaurant" type="radio" id="radio3" />
+        <MDBInput gap onClick={this.onClick('business')} checked={this.state.industry==='business' ? true : false} label="Business" type="radio" id="radio1" />
+        <MDBInput gap onClick={this.onClick('ecommerce')} checked={this.state.industry==='ecommerce' ? true : false} label="E-Commerce" type="radio" id="radio2" />
+        <MDBInput gap onClick={this.onClick('restaurant')} checked={this.state.industry==='restaurant' ? true : false} label="Restaurant" type="radio" id="radio3" />
       </MDBFormInline>
       <footer className="blockquote-footer">
       <div className="text-center">
-              <MDBBtn>Submit</MDBBtn>
+              <MDBBtn onClick={this.sendForm}>Submit</MDBBtn>
             </div>
         </footer>
       </blockquote>
