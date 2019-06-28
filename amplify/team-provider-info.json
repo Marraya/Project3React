@@ -1,0 +1,52 @@
+{
+    "local": {
+        "awscloudformation": {
+            "AuthRoleName": "amplifyauth-local-20190627174729-authRole",
+            "UnauthRoleArn": "arn:aws:iam::809832435711:role/amplifyauth-local-20190627174729-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::809832435711:role/amplifyauth-local-20190627174729-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplifyauth-local-20190627174729-deployment",
+            "UnauthRoleName": "amplifyauth-local-20190627174729-unauthRole",
+            "StackName": "amplifyauth-local-20190627174729",
+            "StackId": "arn:aws:cloudformation:us-east-1:809832435711:stack/amplifyauth-local-20190627174729/29ca1520-9925-11e9-b42f-0a55ab548dc0"
+        },
+        "categories": {
+            "auth": {
+                "amplifyautha178064d": {
+                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Google\",\"client_id\":\"418633552627-kgrd9kdqhv4307c8dom5s4ob6oe65dhf.apps.googleusercontent.com\",\"client_secret\":\"mwaOIGOHqQzHyhHTBt0K0yMv\"},{\"ProviderName\":\"LoginWithAmazon\",\"client_id\":\"AKIA3ZDOGJ77XPPKONX5\",\"client_secret\":\"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\"}]"
+                }
+            }
+        }
+    },
+    "project": {
+        "awscloudformation": {
+            "AuthRoleName": "amplifyauth-project-20190627200350-authRole",
+            "UnauthRoleArn": "arn:aws:iam::809832435711:role/amplifyauth-project-20190627200350-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::809832435711:role/amplifyauth-project-20190627200350-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplifyauth-project-20190627200350-deployment",
+            "UnauthRoleName": "amplifyauth-project-20190627200350-unauthRole",
+            "StackName": "amplifyauth-project-20190627200350",
+            "StackId": "arn:aws:cloudformation:us-east-1:809832435711:stack/amplifyauth-project-20190627200350/36ea8bf0-9938-11e9-8312-0a6fb8e9c8ee"
+        }
+    },
+    "localfinal": {
+        "awscloudformation": {
+            "AuthRoleName": "amplifyauth-localfinal-20190627201054-authRole",
+            "UnauthRoleArn": "arn:aws:iam::809832435711:role/amplifyauth-localfinal-20190627201054-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::809832435711:role/amplifyauth-localfinal-20190627201054-authRole",
+            "Region": "us-east-2",
+            "DeploymentBucketName": "amplifyauth-localfinal-20190627201054-deployment",
+            "UnauthRoleName": "amplifyauth-localfinal-20190627201054-unauthRole",
+            "StackName": "amplifyauth-localfinal-20190627201054",
+            "StackId": "arn:aws:cloudformation:us-east-2:809832435711:stack/amplifyauth-localfinal-20190627201054/33bfe370-9939-11e9-a034-027d76990372"
+        },
+        "categories": {
+            "auth": {
+                "amplifyautha178064d": {
+                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Google\",\"client_id\":\"418633552627-kgrd9kdqhv4307c8dom5s4ob6oe65dhf.apps.googleusercontent.com\",\"client_secret\":\"mwaOIGOHqQzHyhHTBt0K0yMv\"},{\"ProviderName\":\"LoginWithAmazon\",\"client_id\":\"32u103qi4qe13fj2gcfred2ngd\",\"client_secret\":\"1v621qnjhn12tredaocqdhdj3fmq4b4fsko0hqdsq275q1hkfer2\"}]"
+                }
+            }
+        }
+    }
+}

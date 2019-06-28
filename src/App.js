@@ -4,120 +4,79 @@ import { MDBInput, MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLi
 import "./index.css";
 import Routes from "./Routes";
 import b11Logo from "./assets/b11_logo.png"
+import './App.css'
+// import Hub
+import { Auth, Hub } from 'aws-amplify'
+
+function checkUser() {
+  Auth.currentAuthenticatedUser()
+    .then(user => console.log({ user }))
+    .catch(err => console.log(err))
+}
+
+function signOut() {
+  Auth.signOut()
+    .then(data => console.log(data))
+    .catch(err => console.log(err))
+}
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      toggleStateA: false
+      isLoggedIn: false,
+      currentUser: ""
     };
   }
 
-  handleToggleClickA = () => {
-    this.setState({
-      toggleStateA: !this.state.toggleStateA
-    });
-  };
+  // handleToggleClickA = () => {
+  //   this.setState({
+  //     toggleStateA: !this.state.toggleStateA
+  //   });
+  // };
+
+  componentDidMount() {
+    Auth.currentAuthenticatedUser()
+    .then(user => {
+      console.log({ user })
+      console.log(user.attributes.email)
+      this.setState({
+        isLoggedIn: true,
+        currentUser: user.attributes.email
+      },function(){
+        console.log(this.state)
+      });
+    }) 
+    .catch(err => console.log(err))
+  }
+
+  componentDidUpdate() {
+    Hub.listen('auth', (data) => {
+      const { payload } = data
+      console.log('A new auth event has happened: ', data)
+       if (payload.event === 'signIn') {
+         console.log('a user has signed in!')
+       }
+       if (payload.event === 'signOut') {
+         console.log('a user has signed out!')
+       }
+    })
+  }
 
   render() {
-    const mainStyle = {
-      paddingTop: "4rem"
-    };
-
+    
     const specialCaseNavbarStyles = {
       WebkitBoxOrient: "horizontal",
       flexDirection: "row"
     };
 
+    const currentUserEmail = this.state.currentUser
+
     return (
         <div className="grey-skin">
-          <MDBSideNav
-            logo="https://mdbootstrap.com/img/logo/mdb-transparent.png"
-            triggerOpening={this.state.toggleStateA}
-            bg="https://mdbootstrap.com/img/Photos/Others/sidenav4.jpg"
-            mask="strong"
-            hidden
-          >
-            <li>
-              <ul className="social">
-                <li>
-                  <a href="#!">
-                    <MDBIcon fab icon="facebook-f" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#!">
-                    <MDBIcon fab icon="pinterest" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#!">
-                    <MDBIcon fab icon="google-plus-g" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#!">
-                    <MDBIcon fab icon="twitter" />
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <MDBInput
-              type="text"
-              default="Search"
-              style={{
-                color: "#fff",
-                padding: "0 10px 8px 30px",
-                boxSizing: "border-box"
-              }}
-            />
-            <MDBSideNavNav>
-              <MDBSideNavCat
-                name="Submit blog"
-                id="submit-blog-cat"
-                icon="chevron-right"
-              >
-                <MDBSideNavItem>Submit listing</MDBSideNavItem>
-                <MDBSideNavItem>Registration form</MDBSideNavItem>
-              </MDBSideNavCat>
-              <MDBSideNavCat
-                iconRegular
-                name="Instruction"
-                id="instruction-cat"
-                icon="hand-pointer"
-              >
-                <MDBSideNavItem>For bloggers</MDBSideNavItem>
-                <MDBSideNavItem>For authors</MDBSideNavItem>
-              </MDBSideNavCat>
-              <MDBSideNavCat name="About" id="about-cat" icon="eye">
-                <MDBSideNavItem>Instruction</MDBSideNavItem>
-                <MDBSideNavItem>Monthly meetings</MDBSideNavItem>
-              </MDBSideNavCat>
-              <MDBSideNavCat
-                name="Contact me"
-                id="contact-me-cat"
-                icon="envelope"
-              >
-                <MDBSideNavItem>FAQ</MDBSideNavItem>
-                <MDBSideNavItem>Write a message</MDBSideNavItem>
-              </MDBSideNavCat>
-            </MDBSideNavNav>
-          </MDBSideNav>
+          
           <MDBNavbar double expand="md" className="b11-red-nav">
             <MDBNavbarNav left>
-              <MDBNavItem>
-                <div
-                  onClick={this.handleToggleClickA}
-                  key="sideNavToggleA"
-                  style={{
-                    lineHeight: "32px",
-                    marginRight: "1em",
-                    verticalAlign: "middle"
-                  }}
-                >
-                  <MDBIcon icon="bars" color="white" size="2x" style={{ marginTop: 5 }} />
-                </div>
-              </MDBNavItem>
               <MDBNavItem className="d-none d-md-inline" style={{ paddingTop: 0 }}>
               <MDBNavbarBrand>
               <img src={b11Logo} height="30" alt="" />
@@ -154,6 +113,21 @@ class App extends Component {
                   <MDBIcon icon="user" className="d-inline-inline" />{" "}
                   <div className="d-none d-md-inline">Next Step</div>
                 </MDBNavLink>
+              </MDBNavItem>
+              <MDBNavItem>
+               
+                  <MDBIcon icon="user" className="d-inline-inline" />{" "}
+                  <button onClick={() => Auth.federatedSignIn()}>Sign In</button>
+              </MDBNavItem>
+              <MDBNavItem>
+               
+                  <MDBIcon icon="user" className="d-inline-inline" />{" "}
+                  <button onClick={signOut}>Sign Out</button>
+              </MDBNavItem>
+              <MDBNavItem>
+               
+                  <MDBIcon icon="user" className="d-inline-inline" />{" "}
+                  <button onClick={checkUser}>Check User</button>
               </MDBNavItem>
             </MDBNavbarNav>
           </MDBNavbar>
