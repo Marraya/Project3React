@@ -1,7 +1,7 @@
 import React from 'react';
 import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
 
-const Card = () => {
+const Card = (props) => {
   return (
     <MDBCol>
       <MDBCard style={{ width: "22rem" }}>

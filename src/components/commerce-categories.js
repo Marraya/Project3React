@@ -3,7 +3,7 @@ import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardImage, MDBCardBody, MDBCa
 
 const CommerceCategories = (props) => {
   return (
-    <section className="text-center my-5">
+    <section className="text-center my-5 py-5" style={{paddingLeft:"10%", paddingRight:"10%"}}>
       <h2 className="h1-responsive font-weight-bold text-center my-5">
         {props.commerce_categories}
       </h2>

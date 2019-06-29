@@ -1,9 +1,10 @@
 import React from "react";
-import {  MDBRow, MDBCol, MDBIcon } from "mdbreact";
+import {  MDBRow, MDBCol, MDBIcon, MDBContainer } from "mdbreact";
 
 const FeaturesImageLeft = (props) => {
   return (
-    <section className="my-5">
+    <MDBContainer>
+    <section className="my-5 pb-5">
         <h2 className="h1-responsive font-weight-bold text-center my-5">
           {props.features_imageLeft_title}
         </h2>
@@ -56,6 +57,7 @@ const FeaturesImageLeft = (props) => {
           </MDBCol>
         </MDBRow>
       </section>
+      </MDBContainer>
   );
 }
 

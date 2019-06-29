@@ -3,7 +3,7 @@ import { MDBJumbotron, MDBBtn, MDBContainer, MDBRow, MDBCol, MDBCardTitle, MDBIc
 
 const Jumbotron = (props) => {
   return (
-    <MDBContainer className="fluid">
+   
       <MDBRow>
         <MDBCol>
           <MDBJumbotron style={{ padding: 0 }}>
@@ -18,7 +18,7 @@ const Jumbotron = (props) => {
           </MDBJumbotron>
         </MDBCol>
       </MDBRow>
-    </MDBContainer>
+    
   )
 }
 

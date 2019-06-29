@@ -4,10 +4,10 @@ import {  MDBRow, MDBCol, MDBCard, MDBIcon, MDBBtn  } from "mdbreact";
 const CallToAction = (props) => {
   return (
     <section className="text-center my-5">
-    <MDBRow>
-      <MDBCol md="12" className="mb-4">
+    <MDBRow className="text-center">
+      <MDBCol md="12" className="mb-4 text-center">
         <MDBCard
-          className="card-image"
+          className="card card-image"
           style={{
             backgroundImage: props.callToAction_backgroundImage
           }}

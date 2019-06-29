@@ -3,7 +3,7 @@ import {  MDBRow, MDBCol, MDBIcon } from "mdbreact";
 
 const FeaturesTriple = (props) => {
   return (
-      <section className="text-center my-5">
+      <section className="text-center my-5 py-5" style={{paddingRight:"10%", paddingLeft:"10%"}}>
         <h2 className="h1-responsive font-weight-bold my-5">
           {props.features_triple_title}
         </h2>

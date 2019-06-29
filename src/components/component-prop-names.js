@@ -14,6 +14,7 @@ import PictureLeftTextRight from "./components/picture-left-text-right";
 import CallToAction from "./components/call-to-action";
 import TeamMembers from "./components/team-members";
 
+
 // global components 
 
 <IntroRegisterForm
@@ -126,6 +127,12 @@ third_triple_title=""
 third_triple_body=""
 >
 </FeaturesTriple>
+
+<PricingPlans
+pricing_picture1=""
+pricing_picture2=""
+pricing_picture3=""
+></PricingPlans>
 
 <FeaturesImageLeft
 features_imageLeft_title=""

@@ -1,9 +1,10 @@
 import React from "react";
-import {  MDBRow, MDBCol, MDBCardBody, MDBIcon, MDBBtn, MDBView, MDBMask } from "mdbreact";
+import {  MDBRow, MDBCol, MDBCardBody, MDBIcon, MDBBtn, MDBView, MDBMask, MDBContainer } from "mdbreact";
 
 const TriplePictureSection = (props) => {
   return (
-    <section className="text-center my-5">
+  
+    <section className="text-center my-5" style={{paddingLeft:"15%", paddingRight:"15%"}}>
       <MDBRow className="text-center">
         <MDBCol lg="4" md="12" className="mb-lg-0 mb-4">
           <MDBView className="overlay rounded z-depth-1" waves>
@@ -70,6 +71,7 @@ const TriplePictureSection = (props) => {
         </MDBCol>
       </MDBRow>
     </section>
+    
   );
 }
 

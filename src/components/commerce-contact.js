@@ -3,7 +3,7 @@ import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon, MDBBtn, MDBInput } from 
 
 const CommerceContact = (props) => {
   return (
-    <section className="my-5">
+    <section className="my-5 pb-5" style={{paddingRight:"10%", paddingLeft:"10%"}}>
       <h2 className="h1-responsive font-weight-bold text-center my-5">
         {props.commerce_contact_title}
       </h2>
