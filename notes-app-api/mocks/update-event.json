@@ -1,0 +1,12 @@
+{
+    "body": "{\"business\":\"restaurant\",\"website\":\"https://editedexample.com\"}",
+    "pathParameters": {
+      "id": "b5452120-99f3-11e9-bfa5-159c62905ec5"
+    },
+    "requestContext": {
+      "identity": {
+        "cognitoIdentityId": "USER-SUB-1234"
+      }
+    }
+  }
+  

@@ -4,77 +4,109 @@ import MinimalistIntro from "../components/minimalist-intro";
 import IntroPictureRight from "../components/intro-picture-right";
 import IntroRegisterForm from "../components/intro-register-form";
 import { MDBInput, MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon, MDBSideNavItem, MDBSideNavCat, MDBSideNavNav, MDBSideNav, MDBContainer } from "mdbreact";
+import { Auth, Hub } from 'aws-amplify'
+import { API, Storage } from "aws-amplify";
 
 
 class Website extends React.Component {
   constructor() {
     super();
     this.state = {
+      isLoading: true,
+      // client: null,
       business: "",
       website: "",
       industry: "",
       image_scrape: [],
+      profiles: []
     };
   }
 
-  componentDidMount() {
-    axios.get('http://localhost:4000/client')
-        .then(res => {
+  async componentDidMount() {
+    if (!this.props.isAuthenticated) {
+      return;
+    }
 
-          var clientBusiness = res.data[0].client_business;
-          var clientWebsite = res.data[0].client_website;
-          var clientIndustry = res.data[0].client_industry;
+    try {
+      const loadedProfile = await this.getClient();
+      // const { business, website, industry } = generatedClient;
+      console.log(loadedProfile[0])
+      this.setState({
+        business: loadedProfile[0].business,
+        website: loadedProfile[0].website,
+        industry: loadedProfile[0].industry,
+      },
+      console.log(this.state));
+    } catch (e) {
+      alert(e);
+    }
+    this.setState({ isLoading: false 
+    }, console.log(this.state));
+  }
 
-          console.log(res.data[0])
-          this.setState({
-            business: clientBusiness,
-            website: clientWebsite,
-            industry: clientIndustry
-            }, function() {
-              console.log(this.state)
-            })
+  getClient() {
+    return API.get("clients", `/`);
+    // ${this.props.match.params.id}
+  }
+
+//   componentDidMount() {
+//     axios.get('http://localhost:4000/client')
+//         .then(res => {
+
+//           var clientBusiness = res.data[0].client_business;
+//           var clientWebsite = res.data[0].client_website;
+//           var clientIndustry = res.data[0].client_industry;
+
+//           console.log(res.data[0])
+//           this.setState({
+//             business: clientBusiness,
+//             website: clientWebsite,
+//             industry: clientIndustry
+//             }, function() {
+//               console.log(this.state)
+//             })
             
-          var industryChoice = {
+//           var industryChoice = {
           
-          client_industry: this.state.industry
+//           client_industry: this.state.industry
 
-        }
-            axios.post('http://localhost:4000/client/scrape', industryChoice)
-        .then(res => {
+//         }
+//             axios.post('http://localhost:4000/client/scrape', industryChoice)
+//         .then(res => {
 
-         console.log(res.data)
-         console.log(res.data.images_results)
-         var imageScrapeArray = res.data.images_results;
+//          console.log(res.data)
+//          console.log(res.data.images_results)
+//          var imageScrapeArray = res.data.images_results;
          
-        //  for (var i = 25; i < res.data.images_results.length; i++) {
-        //        imageScrapeArray.push(res.data.images_results[i]);
-        //  }
+//         //  for (var i = 25; i < res.data.images_results.length; i++) {
+//         //        imageScrapeArray.push(res.data.images_results[i]);
+//         //  }
 
-         console.log(imageScrapeArray)
-
-
-         this.setState({
-          image_scrape: imageScrapeArray
-          }, function() {
-            console.log(this.state)
-            console.log(this.state.image_scrape[0].original)
-          })
-
-        })
-        .catch(function (error){
-            console.log(error);
-        })
-        })
-        .catch(function (error){
-            console.log(error);
-        })
-
-        console.log(this.state)
-
-        // second axios call for Scrape response
+//          console.log(imageScrapeArray)
 
 
- }
+//          this.setState({
+//           image_scrape: imageScrapeArray
+//           }, function() {
+//             console.log(this.state)
+//             console.log(this.state.image_scrape[0].original)
+//           })
+
+//         })
+//         .catch(function (error){
+//             console.log(error);
+//         })
+//         })
+//         .catch(function (error){
+//             console.log(error);
+//         })
+
+//         console.log(this.state)
+
+//         // second axios call for Scrape response
+
+
+//  }
 
 
   render() {
@@ -82,7 +114,7 @@ class Website extends React.Component {
     const userIndustry = this.state.industry
     let intro;
 
-    console.log(userIndustry)
+    // console.log(userIndustry)
 
     if (userIndustry === "business") {
       intro = <IntroPictureRight
@@ -116,7 +148,7 @@ class Website extends React.Component {
       intro = <h1> Nothing </h1>
     }
 
-    console.log(intro)
+    // console.log(intro)
     return (
 
       

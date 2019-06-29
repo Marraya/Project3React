@@ -1,8 +1,0 @@
-{
-	"auth": {
-		"amplifyautha178064d": {
-			"service": "Cognito",
-			"providerPlugin": "awscloudformation"
-		}
-	}
-}
