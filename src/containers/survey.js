@@ -3,7 +3,9 @@ import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCardGroup, MDBConta
 import redWall from "../assets/red_wall.jpg";
 import LoaderButton from "../components/LoaderButton";
 import axios from 'axios';
-import "./home.css";
+// import "./home.css";
+import "./survey.css";
+
 
 import { API } from "aws-amplify";
 import { Auth } from 'aws-amplify';
@@ -93,7 +95,7 @@ class Survey extends Component {
 render() {
 
 return (
-  <hero>
+  <survey>
 
 <MDBView src={redWall}>
 <MDBMask overlay="black-light" className="flex-center flex-column text-white text-center">
@@ -134,7 +136,7 @@ return (
 
             <LoaderButton
             block
-            bsStyle="primary"
+            bsStyle="red"
             bsSize="large"
             disabled={!this.validateForm()}
             type="submit"
@@ -147,8 +149,13 @@ return (
       </blockquote>
     </MDBCard>
   </MDBMask>
+  <div class="ocean">
+  <div class="wave"></div>
+  <div class="wave"></div>
+  </div>
   </MDBView>
-  </hero>
+  
+  </survey>
 );
 };
 }

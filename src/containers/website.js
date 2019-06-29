@@ -20,6 +20,15 @@ import { MDBInput, MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLi
 import PricingPlans from "../components/pricing-plans";
 import { Auth, Hub } from 'aws-amplify'
 import { API, Storage } from "aws-amplify";
+import GSR from "google-search-results-nodejs";
+import PictureLeft from "../assets/pictureleft.jpg";
+import CTA from "../assets/CTA.jpg";
+import jumbotron from "../assets/Jumbotron.jpg"
+import Slider from "../assets/Slider.jpg"
+import Triple1 from "../assets/triple1.jpg"
+import Triple2 from "../assets/triple2.jpg"
+import Triple3 from "../assets/triple3.jpg"
+let client = new GSR.GoogleSearchResults("13f05fdb9832aae090d311281ecb2de69a29e85dc558ccb3b66706f6b448508e")
 
 
 class Website extends React.Component {
@@ -43,17 +52,22 @@ class Website extends React.Component {
 
     try {
       const loadedProfile = await this.getClient();
+      
       // const { business, website, industry } = generatedClient;
       console.log(loadedProfile[0])
       this.setState({
         business: loadedProfile[0].business,
         website: loadedProfile[0].website,
         industry: loadedProfile[0].industry,
+        image_scrape: loadedScrape
       },
       console.log(this.state));
     } catch (e) {
       alert(e);
     }
+
+    const loadedScrape = await this.getScrape(this.state.industry);
+
     this.setState({ isLoading: false 
     }, console.log(this.state));
   }
@@ -62,6 +76,46 @@ class Website extends React.Component {
     return API.get("clients", `/`);
     // ${this.props.match.params.id}
   }
+
+  getScrape(addIndustry) {
+
+  
+    // var parameter = {
+    //     q: addIndustry,
+    //     tbm: "isch",
+    //     ijn: 0,
+    //     tbs: "itp:photos",
+    //     isz: 1,
+    //   };
+      
+    //   var callback = function(data) {
+    //   console.log(data);
+      
+    //   }
+      
+    //   // Show result as JSON
+    //   client.json(parameter, callback)
+    // res.send('hello world')
+    var longUrl = "https://serpapi.com/search.json?q=Coffee&hl=en&gl=us&google_domain=google.com&tbm=isch&api_key=13f05fdb9832aae090d311281ecb2de69a29e85dc558ccb3b66706f6b448508e"
+    var serpurl = "https://serpapi.com/search.json?"
+    var apiKey = "api_key=13f05fdb9832aae090d311281ecb2de69a29e85dc558ccb3b66706f6b448508e"
+    var query = "q=" + addIndustry +"&"
+    var endingUrl = "hl=en&gl=us&google_domain=google.com&tbm=isch&"
+
+    axios.get(serpurl + query + endingUrl +apiKey, {useCredentails: true})
+  .then(function (response) {
+    // handle success
+    console.log(response);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  }
+
+  
+
+  
 
   render() {
     
@@ -76,8 +130,11 @@ class Website extends React.Component {
     let section7;
     let contact;
 
+    console.log(this.state)
+
     if (userIndustry === "business") {
       intro = <MinimalistIntro
+      minimalist_intro_picture={Slider}
       minimalist_intro={this.state.business}
       minimalist_intro_business_info="Your business info will go here"
       minimalist_intro_shop_button="Shop Now"
@@ -98,8 +155,7 @@ class Website extends React.Component {
       >
       </FeaturesTriple>
       section2 = <CallToAction
-      callToAction_backgroundImage=
-      "url(https://mdbootstrap.com/img/Photos/Others/img%20%2832%29.jpg)"
+      callToAction_backgroundImage
       CallToAction_subtitle_color="White"
       CallToAction_subtitle_text="CTA"
       CallToAction_title="Call To Action"
@@ -109,7 +165,7 @@ class Website extends React.Component {
       >
       </CallToAction>
       section7 = <PictureLeftTextRight
-      pictureLefttextRight_image="https://mdbootstrap.com/img/Photos/Others/screens-section.jpg"
+      pictureLefttextRight_image="https://images.techhive.com/images/article/2016/02/bi-business-intelligence-ts-100646689-large.jpg"
       pictureLefttextRight_icon1="share"
       pictureLefttextRight_icon1_color="indigo-text"
       pictureLefttextRight_title1="Feature 1"
@@ -125,17 +181,17 @@ class Website extends React.Component {
       >
       </PictureLeftTextRight>
       section4 = <TriplePictureSection
-      triplePictureSection_image1="https://mdbootstrap.com/img/Photos/Others/images/58.jpg"
+      triplePictureSection_image1={Triple1}
       triplePictureSection_title1="Title 1"
       triplePictureSection_body1="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       triplePictureSection_button1_color="indigo"
       triplePictureSection_button1="View Project"
-      triplePictureSection_image2="https://mdbootstrap.com/img/Photos/Others/project4.jpg"
+      triplePictureSection_image2={Triple2}
       triplePictureSection_title2="Title 2"
       triplePictureSection_body2="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       triplePictureSection_button2_color="indigo"
       triplePictureSection_button2="View Project"
-      triplePictureSection_image3="https://mdbootstrap.com/img/Photos/Others/images/88.jpg"
+      triplePictureSection_image3={Triple3}
       triplePictureSection_title3="Title 3"
       triplePictureSection_body3="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       triplePictureSection_button3="View Project"
@@ -144,7 +200,7 @@ class Website extends React.Component {
         section3 = <FeaturesImageLeft
         features_imageLeft_title="Information About The Business"
         features_imageLeft_titleBody="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-        features_imageLeft_image="https://mdbootstrap.com/img/Photos/Others/images/83.jpg"
+        features_imageLeft_image={PictureLeft}
         features_imageLeft_firstIcon="book"
         features_imageLeft_firstTitle="Title 1"
         features_imageLeft_firstText="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."

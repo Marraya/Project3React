@@ -1,5 +1,6 @@
 import React from "react";
 import {  MDBRow, MDBCol, MDBCard, MDBIcon, MDBBtn  } from "mdbreact";
+import callToAction from "../components/call-to-action";
 
 const CallToAction = (props) => {
   return (
@@ -9,11 +10,11 @@ const CallToAction = (props) => {
         <MDBCard
           className="card card-image"
           style={{
-            backgroundImage: props.callToAction_backgroundImage
+            backgroundImage: 'url("https://ceafitness.com/wp-content/uploads/2019/06/CTA2.jpg")'
           }}
         >
-          <div className="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
-            <div>
+          <div style={{paddingLeft:"50%"}} className="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
+            <div style={{paddingLeft:"32%"}}>
               <h6 className={props.CallToAction_subtitle_color}>
                 <MDBIcon icon="plane" />
                 <strong> {props.CallToAction_subtitle_text}</strong>

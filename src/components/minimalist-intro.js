@@ -24,10 +24,10 @@ class MinimalistIntro extends Component {
     );
     return (
       <>
-        <MDBView src={`https://mdbootstrap.com/img/Photos/Others/images/76.jpg`} fixed>
+        <MDBView className="mask flex-center" src={this.props.minimalist_intro_picture} fixed>
           <MDBMask className="rgba-white-light d-flex justify-content-center align-items-center">
             <MDBContainer>
-              <MDBRow>
+              <MDBRow className="mask flex-center rgba-black-strong">
                 <MDBCol md="12" className="mb-4 white-text text-center">
                   <h1 class="display-3 mb-0 pt-md-5 pt-5 white-text font-weight-bold">{this.props.minimalist_intro}</h1>
                   <hr className="hr-light my-4" />
