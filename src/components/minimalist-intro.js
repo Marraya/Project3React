@@ -30,7 +30,7 @@ class MinimalistIntro extends Component {
               <MDBRow className="mask flex-center rgba-black-strong">
                 <MDBCol md="12" className="mb-4 white-text text-center">
                   <h1 class="display-3 mb-0 pt-md-5 pt-5 white-text font-weight-bold">{this.props.minimalist_intro}</h1>
-                  <hr className="hr-light my-4" />
+                  <hr className="hr-light my-4 half-hr" />
                   <h5 className="text-uppercase pt-md-5 pt-sm-2 pt-5 pb-md-5 pb-sm-3 pb-5 white-text font-weight-bold">{this.props.minimalist_intro_business_info}</h5>
                   <MDBBtn className="white btn-light-blue" size="lg">{this.props.minimalist_intro_shop_button}</MDBBtn>
                   <MDBBtn className="white btn-indigo" size="lg" >{this.props.minimalist_intro_contact_button}</MDBBtn>

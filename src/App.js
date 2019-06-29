@@ -131,42 +131,32 @@ class App extends Component {
               <MDBNavItem>
                 <MDBNavLink to="/survey">
                   <MDBIcon far icon="comments" className="d-inline-inline" />{" "}
-                  <div className="d-none d-md-inline">Survey</div>
+                  <div className="d-none d-md-inline">Getting Started</div>
                 </MDBNavLink>
               </MDBNavItem>
               <MDBNavItem>
                 <MDBNavLink to="/website">
                   <MDBIcon icon="user" className="d-inline-inline" />{" "}
-                  <div className="d-none d-md-inline">Generated Website</div>
+                  <div className="d-none d-md-inline">Check Out Your Website</div>
                 </MDBNavLink>
               </MDBNavItem>
-              <MDBNavItem>
-                <MDBNavLink to="/test">
-                  <MDBIcon icon="user" className="d-inline-inline" />{" "}
-                  <div className="d-none d-md-inline">Database Test</div>
-                </MDBNavLink>
-              </MDBNavItem>
-              <MDBNavItem>
-                <MDBNavLink to="/nextstep">
-                  <MDBIcon icon="user" className="d-inline-inline" />{" "}
-                  <div className="d-none d-md-inline">Next Step</div>
-                </MDBNavLink>
-              </MDBNavItem>
+             
+             
 
 
 {this.state.isAuthenticated
-  ? <MDBNavItem onClick={this.handleLogout}>       
+  ? <MDBNavItem onClick={this.handleLogout} className="logout-button">       
     <MDBIcon icon="user" className="d-inline-inline" />{" "}
     <div className="d-none d-md-inline">Logout</div>
     </MDBNavItem>
   : <Fragment>
-       <MDBNavItem>
+       <MDBNavItem className="login-button">
               <MDBNavLink to="/login">
                   <MDBIcon icon="user" className="d-inline-inline" />{" "}
                   <div className="d-none d-md-inline">Login</div>
                 </MDBNavLink>
               </MDBNavItem>
-              <MDBNavItem>
+              <MDBNavItem className="signup-button">
               <MDBNavLink to="/signup">
                   <MDBIcon icon="user" className="d-inline-inline" />{" "}
                   <div className="d-none d-md-inline">Sign Up</div>
